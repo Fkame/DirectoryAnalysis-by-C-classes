@@ -1,0 +1,16 @@
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.exe
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.deps.json
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.runtimeconfig.json
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.runtimeconfig.dev.json
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.dll
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\ref\DirectoryAnalysis.dll
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\bin\Debug\net5.0\DirectoryAnalysis.pdb
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.csprojAssemblyReference.cache
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.GeneratedMSBuildEditorConfig.editorconfig
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.AssemblyInfoInputs.cache
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.AssemblyInfo.cs
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.csproj.CoreCompileInputs.cache
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.dll
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\ref\DirectoryAnalysis.dll
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.pdb
+D:\source\SimpleNetCommunticationProgs\DirectoryAnalysis\obj\Debug\net5.0\DirectoryAnalysis.genruntimeconfig.cache
