@@ -7,18 +7,18 @@ namespace DirectoryAnalysis.Helpstaff
 {
     public class FilesContainer
     {
-        private Dictionary<string, FileAsBytes> container;
+        private Dictionary<string, byte[]> container;
 
         public FilesContainer() 
         {
-            this.container = new Dictionary<string, FileAsBytes>();
+            this.container = new Dictionary<string, byte[]>();
         }
 
         public byte[] GetValueByKey(string key)
         {
-            FileAsBytes valueObj = new FileAsBytes();
-            container.TryGetValue(key, out valueObj);
-            return valueObj.GetBytesCopy();
+            byte[] file = null;
+            container.TryGetValue(key, out file);
+            return this.GetBytesCopy(file);
         }
 
         public bool Remove(string key)
@@ -29,7 +29,7 @@ namespace DirectoryAnalysis.Helpstaff
 
         public bool Add(string key, byte[] value) 
         {
-            if (container.TryAdd(key, new FileAsBytes(value))) return true;
+            if (container.TryAdd(key, this.GetBytesCopy(value))) return true;
             return false;
         }
 
@@ -49,34 +49,10 @@ namespace DirectoryAnalysis.Helpstaff
             return array;
         }
 
-    }
-
-    /// <summary>
-    /// Вспомогательный промежуточный класс, так как в словарь нельзя поместить значение byte[]
-    /// </summary>
-    public class FileAsBytes
-    {
-        public byte[] BytesOfFile = null;
-        public FileAsBytes(byte[] bytes) 
+        private byte[] GetBytesCopy(byte[] copyFrom) 
         {
-            BytesOfFile = new byte[bytes.Length];
-            Array.Copy(bytes, BytesOfFile, bytes.Length);
-        }
-
-        public FileAsBytes() 
-        {
-            BytesOfFile = null;
-        }
-
-        public bool IsByteArrayNull()
-        {
-            return BytesOfFile == null;
-        }
-
-        public byte[] GetBytesCopy() 
-        {
-            byte[] copy = new byte[BytesOfFile.Length];
-            Array.Copy(BytesOfFile, copy, BytesOfFile.Length);
+            byte[] copy = new byte[copyFrom.Length];
+            Array.Copy(copyFrom, copy, copyFrom.Length);
             return copy;
         }
     }
