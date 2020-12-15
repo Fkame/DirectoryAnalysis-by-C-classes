@@ -17,13 +17,14 @@ namespace DirectoryAnalysis
         /// <param name="e"></param>
         private void OnChanged(object source, FileSystemEventArgs e) 
         {
+            Console.WriteLine($"{DateTime.Now} File: {e.FullPath} -> {e.ChangeType}");
+
             if (wasRenamed)
             {
                 wasRenamed = false;
                 Console.WriteLine("Was renamed, not my territory.");
                 return;
             }
-            Console.WriteLine($"{DateTime.Now} File: {e.FullPath} -> {e.ChangeType}");
 
             string path = e.FullPath;
 
@@ -41,7 +42,7 @@ namespace DirectoryAnalysis
                 try { fileFromDisc = File.ReadAllBytes(path); break; } 
                 catch (Exception ex)
                 { 
-                    Console.WriteLine(ex.Message);
+                    //Console.WriteLine(ex.Message);
                 }
             }
            
@@ -50,7 +51,7 @@ namespace DirectoryAnalysis
             // Проверка: совпадают ли размеры файлов. Нужно для того, чтобы не было исключения при следующей проверке
             if (fileFromDict.Length != fileFromDisc.Length) 
             {
-                //Console.WriteLine($"File on disc is not the same as in buffer - replacing");
+                Console.WriteLine($"File on disc is not the same as in buffer - replacing");
                 filebuffer.ReplaceValue(path, fileFromDisc);
                 this.PrintFileBuffer(filebuffer, DirectoryPath);
                 return;
@@ -67,6 +68,8 @@ namespace DirectoryAnalysis
                     break;
                 }
             }
+            
+            Console.WriteLine("No changes in file");
         }
 
         /// <summary>
@@ -79,7 +82,7 @@ namespace DirectoryAnalysis
             wasRenamed = true;
             Console.WriteLine($"{DateTime.Now} File: {e.OldFullPath} -- to -- {e.FullPath} -> {e.ChangeType}");
 
-            filebuffer.ReplaceKey(e.OldFullPath, e.FullPath);
+            if(!filebuffer.ReplaceKey(e.OldFullPath, e.FullPath)) Console.WriteLine("Cannot replase key in dictionary!");
             this.PrintFileBuffer(filebuffer, DirectoryPath);
         }
         

@@ -73,7 +73,6 @@ namespace DirectoryAnalysis.Helpstaff
         {
             byte[] value = null;
             if (!container.TryGetValue(oldKey,out value)) return false;
-
             if (!container.Remove(oldKey)) return false;
             if (!container.TryAdd(newKey, value)) return false;
             return true;
