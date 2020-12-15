@@ -55,5 +55,33 @@ namespace DirectoryAnalysis.Helpstaff
             Array.Copy(copyFrom, copy, copyFrom.Length);
             return copy;
         }
+
+        public bool IsExists(string key)
+        {
+            byte[] file = null;
+            return container.TryGetValue(key, out file);
+        }
+
+        public bool ReplaceValue(string key, byte[] newValue)
+        {
+            if (!container.Remove(key)) return false;
+            if (!container.TryAdd(key, newValue)) return false;
+            return true;
+        }
+
+        public bool ReplaceKey(string oldKey, string newKey)
+        {
+            byte[] value = null;
+            if (!container.TryGetValue(oldKey,out value)) return false;
+
+            if (!container.Remove(oldKey)) return false;
+            if (!container.TryAdd(newKey, value)) return false;
+            return true;
+        }
+
+        public void Clear()
+        {
+            container.Clear();
+        }
     }
 }

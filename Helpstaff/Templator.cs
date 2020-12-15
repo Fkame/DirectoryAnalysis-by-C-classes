@@ -75,5 +75,14 @@ namespace DirectoryAnalysis.Helpstaff
                         directory.CreationTime, directory.Attributes, directory.Root
             );
         }
+    
+        public static void LoadTemplates(DirectoryInfo directory, bool printDirectoryInfo, bool printAllFilesPaths)
+        {
+            Templator.CreateTemplateStructureIfNotExists(directory);
+            Console.WriteLine();
+            if (printDirectoryInfo) { Templator.PrintInfoAboutDirectory(directory); Console.WriteLine(); }
+            if (printAllFilesPaths) { Templator.PrintAllFilesInDirectory(directory, true); Console.WriteLine(); }
+        }
+
     }
 }
