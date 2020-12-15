@@ -1,12 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Threading;
-using System.Text;
-
-using DirectoryAnalysis.Helpstaff;
-using DirectoryAnalysis.Tests;
 
 namespace DirectoryAnalysis
 {

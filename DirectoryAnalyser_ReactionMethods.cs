@@ -1,12 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Text;
-
-using DirectoryAnalysis.Helpstaff;
-using DirectoryAnalysis.Tests;
 
 namespace DirectoryAnalysis
 {
@@ -27,6 +20,7 @@ namespace DirectoryAnalysis
             if (wasRenamed)
             {
                 wasRenamed = false;
+                Console.WriteLine("Was renamed, not my territory.");
                 return;
             }
             Console.WriteLine($"{DateTime.Now} File: {e.FullPath} -> {e.ChangeType}");
@@ -34,9 +28,9 @@ namespace DirectoryAnalysis
             string path = e.FullPath;
 
             // Проверка: есть ли файл с таким путем в хранилище
-            if (!File.Exists(path) & !filebuffer.IsExists(path)) 
+            if (!File.Exists(path) | !filebuffer.IsExists(path)) 
             {
-                Console.WriteLine($"\tNo such file it buffer. Change func return;");
+                Console.WriteLine($"No such file it buffer. Change func return;");
                 return;
             }
 
@@ -56,7 +50,7 @@ namespace DirectoryAnalysis
             // Проверка: совпадают ли размеры файлов. Нужно для того, чтобы не было исключения при следующей проверке
             if (fileFromDict.Length != fileFromDisc.Length) 
             {
-                Console.WriteLine($"\tFile on disc is not the same as in buffer - replacing");
+                //Console.WriteLine($"File on disc is not the same as in buffer - replacing");
                 filebuffer.ReplaceValue(path, fileFromDisc);
                 this.PrintFileBuffer(filebuffer, DirectoryPath);
                 return;
@@ -68,7 +62,7 @@ namespace DirectoryAnalysis
                 if (fileFromDict[i] != fileFromDisc[i])
                 {
                     filebuffer.ReplaceValue(path, fileFromDisc);
-                    Console.WriteLine($"\tFile on disc is not the same as in buffer - replacing");
+                    Console.WriteLine($"File on disc is not the same as in buffer - replacing");
                     this.PrintFileBuffer(filebuffer, DirectoryPath);
                     break;
                 }
@@ -98,7 +92,16 @@ namespace DirectoryAnalysis
         {
             Console.WriteLine($"{DateTime.Now} File: {e.FullPath} -> {e.ChangeType}");
 
-            byte[] file = File.ReadAllBytes(e.FullPath);
+            byte[] file = null;
+            while (true)
+            {
+                try { file = File.ReadAllBytes(e.FullPath); break; } 
+                catch (Exception ex)
+                { 
+                    //Console.WriteLine(ex.Message);
+                }
+            }
+
             filebuffer.Add(e.FullPath, file);
             this.PrintFileBuffer(filebuffer, DirectoryPath);
         }

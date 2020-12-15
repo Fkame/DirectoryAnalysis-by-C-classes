@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Threading;
 using System.Text;
 
 using DirectoryAnalysis.Helpstaff;
@@ -39,25 +37,6 @@ namespace DirectoryAnalysis
             // Тут всякие тесты лежат
             //this.StartTests();
         }
-       
-        static void Main(string[] args)
-        {
-            string path = Path.Join(System.Environment.CurrentDirectory, "Resources", "Websites", "SomeSite1");
-            DirectoryInfo directory = new DirectoryInfo(path);
-            DirectoryAnalyser da = new DirectoryAnalyser(directory);
-
-            Console.WriteLine($"Now some job is doing - dynamic analysing files in {path}");
-            Console.WriteLine("Press q to quit the sample.");
-
-            new Task(da.StartSomeJob);
-            while (Console.Read() != 'q');
-
-            
-            da.StartWatchingForChangesInFiles();
-
-           
-            while (Console.Read() != 'q') ;
-        }
 
         private void LoadFilesToBuffer()
         {
@@ -78,7 +57,7 @@ namespace DirectoryAnalysis
             {
                 StringBuilder shortPath = new StringBuilder(key);
                 shortPath.Remove(0, directoryPath.FullName.Length);
-                Console.WriteLine($"[{shortPath}] -> somefile...(null={filebuffer.GetValueByKey(key)==null}");
+                Console.WriteLine($"[{shortPath}] -> somefile...(null={filebuffer.GetValueByKey(key)==null})");
             }
             Console.WriteLine("--- End Writing Dictionary ---\n");
         }
